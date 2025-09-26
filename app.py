@@ -1,11 +1,11 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import pickle
 import matplotlib.pyplot as plt
+from joblib import load  # <-- use joblib
 
 # Load trained model
-model = pickle.load(open("rf_model.pkl", "rb"))
+model = load("rf_model.joblib")  # <-- correct way for joblib
 
 # Streamlit Page Config
 st.set_page_config(page_title="Amazon Delivery Predictor", page_icon="📦", layout="wide")
@@ -68,5 +68,6 @@ if st.session_state["history"]:
     ax.set_ylabel("Hours")
     ax.set_xlabel("Prediction Count")
     st.pyplot(fig)
+
 
 
